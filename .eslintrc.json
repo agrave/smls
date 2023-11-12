@@ -1,0 +1,35 @@
+{
+  "env": {
+    "es2021": true
+  },
+  "extends": [
+    "plugin:no-await-in-promise/recommended",
+    "standard-with-typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["prettier", "no-await-in-promise"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline"
+      }
+    ],
+    "@typescript-eslint/no-unnecessary-type-assertion": "off",
+    "no-return-await": "off",
+    "@typescript-eslint/return-await": ["error", "in-try-catch"],
+    "@typescript-eslint/strict-boolean-expressions": "off"
+  }
+}
