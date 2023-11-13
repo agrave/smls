@@ -9,6 +9,10 @@ void (async function (): Promise<void> {
   for await (const student of students) {
     const marks = calcBonus(await getMarks(student.id))
     console.log('\n', student.name)
-    printTable(marks)
+    if (marks.length) {
+      printTable(marks)
+    } else {
+      console.log('Ще немає оцінок за поточний період')
+    }
   }
 })()
