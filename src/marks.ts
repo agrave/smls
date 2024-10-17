@@ -10,18 +10,18 @@ export interface Lesson {
 }
 
 export async function getMarks(studentId: string): Promise<Lesson[]> {
-  const { USERNAME, PASSWORD } = process.env
+  const { LOGIN, PASSWORD } = process.env
 
   axios.defaults.headers.common.cookie = `PHPSESSID=${Md5.hashStr(
     new Date().toString(),
   )}`
 
   // authorize
-  await axios.post(
+  const aaa = await axios.post(
     'https://smls.com.ua/auth/attempt',
     {
       language: 'ua',
-      username: USERNAME as string,
+      username: LOGIN as string,
       password: PASSWORD as string,
     },
     {
