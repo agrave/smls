@@ -9,7 +9,7 @@ export interface Lesson {
   comment?: string
 }
 
-export async function getMarks(studentId: string): Promise<Lesson[]> {
+export async function getMarks(studentId: string, dates: string[]): Promise<Lesson[]> {
   const { LOGIN, PASSWORD } = process.env
 
   axios.defaults.headers.common.cookie = `PHPSESSID=${Md5.hashStr(
@@ -33,12 +33,11 @@ export async function getMarks(studentId: string): Promise<Lesson[]> {
     },
   )
 
-  const range = dateRange()
   const diaryByDate = (date: string): string =>
     `https://smls.com.ua/parent/diary/getDiaryByDate?date=${date}&user_id=${studentId}`
 
   const rawData = await Promise.all(
-    range.map(async (date) => axios.get(diaryByDate(date))),
+    dates.map(async (date) => axios.get(diaryByDate(date))),
   )
 
   return (
